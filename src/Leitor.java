@@ -14,33 +14,39 @@ public class Leitor {
 		arvore.add(linha);
 		linha = br.readLine();
 		do{
-			if(linha.startsWith("C")){
-				Node cap = arvore.add(linha, arvore.getRootN());
-				do{
-					if(linha.startsWith("P"))
-						arvore.add(linha, cap);
-					if(linha.startsWith("S")){
-						Node sec = arvore.add(linha, cap);
-						do{
-							if(linha.startsWith("P"))
-								arvore.add(linha, sec);
-							if(linha.startsWith("SS")){
-								Node ssec = arvore.add(linha, sec);
-								do{
-									if(linha.startsWith("P")){
-										arvore.add(linha, ssec);
-									}
-								}while(!linha.startsWith("SS") ||linha!=null);
-							} 
-							linha = br.readLine();
-						}while(!linha.startsWith("S") || linha!=null);
-					}
-					linha = br.readLine();
-				}while(!linha.startsWith("C") || linha!=null);
-			}
+		if(linha.startsWith("C") && linha!=null){
+			
+			Node cap = arvore.add(linha, arvore.getRootN());
 			linha = br.readLine();
-		}while(!linha.startsWith("L" ) || linha!=null);
-		System.out.println();
+			do{
+				if(linha.startsWith("P") && linha!=null){
+					arvore.add(linha, cap);
+					linha = br.readLine();
+				}
+				if(linha.startsWith("S") && linha!=null){
+					Node sec = arvore.add(linha, cap);
+					linha = br.readLine();
+					do{
+						if(linha.startsWith("P") && linha!=null){
+							arvore.add(linha, sec);
+							linha = br.readLine();
+						}
+						if(linha.startsWith("SS") && linha!=null){
+							Node ssec = arvore.add(linha, sec);
+							linha = br.readLine();
+							do{
+								if(linha.startsWith("P") && linha!=null){
+									arvore.add(linha, ssec);
+									linha = br.readLine();
+								}
+							}while(linha!=null && !linha.startsWith("S") && !linha.startsWith("SS"));
+						}
+					}while(linha!=null && !linha.startsWith("C") && !linha.startsWith("S"));
+				}
+			}while(linha!=null && !linha.startsWith("C"));
+		}	
+		}while(linha!=null);
+		arvore.positionsPre();
 	}
 }
 

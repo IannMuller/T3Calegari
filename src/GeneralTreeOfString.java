@@ -110,7 +110,7 @@ public class GeneralTreeOfString {
             }
         }
         count++;
-        return aux;
+        return n;
     }
 
 
