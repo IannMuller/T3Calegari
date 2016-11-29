@@ -4,8 +4,9 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
-		Leitor leitor = new Leitor();
-		leitor.ler();
+		Build build = new Build();
+		build.Buildar();
+		
 		
 	}
 
